@@ -14,11 +14,26 @@ import logging
 
 
 def PlotGraph(firstChannel, secondChannel, metaData):
+    import matplotlib.pyplot as plt
+
+    x1 = firstChannel
+    x2 = secondChannel
+    check = []
+
+    for index in range(len(x1)):
+        check.append(x2[index] - x1[index])
+
+    y = range(0,len(firstChannel))
+
+    plt.plot(x1,y)
+    plt.plot(x2,y)
+    plt.plot(check,y)
+    plt.show()
 
     return None
 
 def GetFilename(dirPath):
-    filename = ''
+    filename = '0000.dat'
     return filename
 
 def ParseChannelDataFromString(datastring):
@@ -57,7 +72,8 @@ def ImportDataFromFile(filename):
 
 def main():
     f, s, m = ImportDataFromFile(GetFilename(''))
-    print m
+
+    PlotGraph(f,s,m)
 
     return None
 
